@@ -54,4 +54,8 @@ class Machine {
     public boolean isInactive() {
         return (activeJob == null);
     }
+
+    public boolean noWaitingJob() {
+        return jobQ.isEmpty();
+    }
 }
