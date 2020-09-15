@@ -62,4 +62,8 @@ class Machine {
     public void updateActiveJob() {
         activeJob = (Job) jobQ.remove();
     }
+
+	public void incNumTasks() {
+        numTasks++;
+	}
 }

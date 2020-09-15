@@ -59,7 +59,7 @@ public class MachineShopSimulator {
             else {// take job off the queue and work on it
                 machine[theMachine].updateActiveJob();
                 machine[theMachine].setTotalWait(timeNow);
-                machine[theMachine].setNumTasks(machine[theMachine].getNumTasks() + 1);
+                machine[theMachine].incNumTasks();
                 int t = machine[theMachine].getActiveJob().removeNextTask();
                 eList.setFinishTime(theMachine, timeNow + t);
             }
