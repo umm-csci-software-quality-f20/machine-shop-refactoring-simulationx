@@ -58,4 +58,8 @@ class Machine {
     public boolean noWaitingJob() {
         return jobQ.isEmpty();
     }
+
+    public void updateActiveJob() {
+        activeJob = (Job) jobQ.remove();
+    }
 }
