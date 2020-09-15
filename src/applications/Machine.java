@@ -70,4 +70,8 @@ class Machine {
 	public void setInactive() {
         activeJob = null;
 	}
+
+	public int nextTask() {
+		return activeJob.removeNextTask();
+	}
 }
