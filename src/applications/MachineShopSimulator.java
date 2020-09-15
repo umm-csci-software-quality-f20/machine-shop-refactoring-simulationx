@@ -60,7 +60,6 @@ public class MachineShopSimulator {
                 machine[theMachine].updateActiveJob();
                 machine[theMachine].setTotalWait(timeNow);
                 machine[theMachine].incNumTasks();
-                //int t = machine[theMachine].getActiveJob().removeNextTask();
                 int t = machine[theMachine].nextTask();
                 eList.setFinishTime(theMachine, timeNow + t);
             }
