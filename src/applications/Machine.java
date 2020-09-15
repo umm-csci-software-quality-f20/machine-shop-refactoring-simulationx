@@ -66,4 +66,8 @@ class Machine {
 	public void incNumTasks() {
         numTasks++;
 	}
+
+	public void setInactive() {
+        activeJob = null;
+	}
 }
