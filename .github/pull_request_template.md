@@ -5,15 +5,22 @@
 
 ## Related Issue
 <!--- This project only accepts pull requests related to open issues -->
-<!--- If suggesting a new feature or change, please discuss it in an issue first -->
-<!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
 <!--- Please link to the issue here: -->
 
-## Checklist:
-<!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
-<!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] I have added tests to cover my changes.
-- [ ] All new and existing tests passed.
+## Motivation and Context
+<!--- Why is this change required? What problem does it solve? -->
+<!--- Describe the smell this addresses and the particular location the smell occurs -->
+<!--- Provide a summary of the description in the issue, but don’t necessarily copy all the details over to the pull request. -->
+<!--- Make sure to include enough information that people don’t have to click over the issue if they aren’t inclined. -->
+<!--- You need to make sure the issue has the necessary detail. -->
 
-## Encountered Smells
-<!--- Any smells produced/noticed while coding -->
+## Smell impact
+<!--- What smells does this reduce/eliminate? -->
+<!--- What smells does this introduce/increase? -->
+<!--- Were there old smells that you hadn’t noticed that this helps bring to your attention? -->
+
+## Testing & Screenshots:
+<!--- Screenshot of the code coverage report so we can track that over time. -->
+<!--- Mention any new tests here as well. -->
+
+- [ ] All new and existing tests passed.
