@@ -47,10 +47,6 @@ class Machine {
         return activeJob;
     }
 
-    public void setActiveJob(Job activeJob) {
-        this.activeJob = activeJob;
-    }
-
     public boolean isInactive() {
         return (activeJob == null);
     }
