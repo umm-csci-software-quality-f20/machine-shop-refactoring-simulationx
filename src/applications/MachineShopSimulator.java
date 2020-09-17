@@ -3,7 +3,7 @@
 package applications;
 
 public class MachineShopSimulator {
-    
+
     public static final String NUMBER_OF_MACHINES_MUST_BE_AT_LEAST_1 = "number of machines must be >= 1";
     public static final String NUMBER_OF_MACHINES_AND_JOBS_MUST_BE_AT_LEAST_1 = "number of machines and jobs must be >= 1";
     public static final String CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0 = "change-over time must be >= 0";
@@ -21,7 +21,7 @@ public class MachineShopSimulator {
     // methods
     /**
      * move theJob to machine for its next task
-     * 
+     *
      * @return false iff no next task
      */
     boolean moveToNextMachine(Job theJob, SimulationResults simulationResults) {
@@ -44,7 +44,7 @@ public class MachineShopSimulator {
 
     /**
      * change the state of theMachine
-     * 
+     *
      * @return last job run on this machine
      */
     Job changeState(int theMachine) {// Task on theMachine has finished,
@@ -55,7 +55,7 @@ public class MachineShopSimulator {
                                                     // state
             lastJob = null;
             // wait over, ready for new job
-            if (machine[theMachine].noWaitingJob()) // no waiting job
+            if (machine[theMachine].noJobQueued()) // no waiting job
                 eList.setFinishTime(theMachine, largeTime);
             else {// take job off the queue and work on it
                 machine[theMachine].updateActiveJob();
