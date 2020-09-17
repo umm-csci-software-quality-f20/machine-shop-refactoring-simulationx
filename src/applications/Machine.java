@@ -31,8 +31,8 @@ class Machine {
         return totalWait;
     }
 
-    public void setTotalWait(int totalWait) {
-        this.totalWait = totalWait;
+    public void setTotalWait(int timeNow) {
+        this.totalWait = totalWait + timeNow - activeJob.getArrivalTime();
     }
 
     public int getNumTasks() {
@@ -47,7 +47,27 @@ class Machine {
         return activeJob;
     }
 
-    public void setActiveJob(Job activeJob) {
-        this.activeJob = activeJob;
+    public boolean isInactive() {
+        return (activeJob == null);
     }
+
+    public boolean noJobQueued() {
+        return jobQ.isEmpty();
+    }
+
+    public void updateActiveJob() {
+        activeJob = (Job) jobQ.remove();
+    }
+
+	public void incNumTasks() {
+        numTasks++;
+	}
+
+	public void setInactive() {
+        activeJob = null;
+	}
+
+	public int nextTask() {
+		return activeJob.removeNextTask();
+	}
 }
