@@ -19,8 +19,8 @@ class Machine {
         return jobQ;
     }
 
-    public int getChangeTime() {
-        return changeTime;
+    public boolean jobsQueued() {
+        return !jobQ.isEmpty();
     }
 
     public void setChangeTime(int changeTime) {
@@ -39,10 +39,6 @@ class Machine {
         return numTasks;
     }
 
-    public void setNumTasks(int numTasks) {
-        this.numTasks = numTasks;
-    }
-
     public Job getActiveJob() {
         return activeJob;
     }
@@ -51,17 +47,9 @@ class Machine {
         return activeJob != null;
     }
 
-    public boolean jobsQueued() {
-        return !jobQ.isEmpty();
-    }
-
     public void updateActiveJob() {
         activeJob = (Job) jobQ.remove();
     }
-
-	public void incNumTasks() {
-        numTasks++;
-	}
 
 	public void setInactive() {
         activeJob = null;
@@ -73,13 +61,13 @@ class Machine {
 
     public int scheduleChangeOverTime() {
         setInactive();
-        return getChangeTime();
+        return changeTime;
     }
 
     public int workNextTask(int timeNow) {
         updateActiveJob();
         setTotalWait(timeNow);
-        incNumTasks();
+        numTasks++;
         return nextTask();
     }
 }
