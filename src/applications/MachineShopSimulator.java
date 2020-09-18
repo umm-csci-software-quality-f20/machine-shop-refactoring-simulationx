@@ -50,19 +50,13 @@ public class MachineShopSimulator {
     Job changeState(int theMachine) {// Task on theMachine has finished,
                                             // schedule next one.
         Job lastJob = null;
-        int finishTime;
+        int finishTime = largeTime;
 
-        if (machine[theMachine].isInactive()) {// in idle or change-over
-                                                    // state
-            // wait over, ready for new job
-            if (machine[theMachine].noJobQueued()) // no waiting job
-                finishTime = largeTime;
-            else {// take job off the queue and work on it
-                finishTime = timeNow + machine[theMachine].workNextTask(timeNow);
-            }
-        } else {// task has just finished on machine[theMachine]
+        if (machine[theMachine].isActive()) {// task has just finished on machine[theMachine]
             lastJob = machine[theMachine].getActiveJob();
             finishTime= timeNow + machine[theMachine].scheduleChangeOverTime();
+        } else if (machine[theMachine].jobsQueued()) {
+            finishTime = timeNow + machine[theMachine].workNextTask(timeNow);
         }
         eList.setFinishTime(theMachine, finishTime);
 

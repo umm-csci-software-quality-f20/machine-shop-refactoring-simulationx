@@ -11,14 +11,14 @@ public class MachineTest {
     @Before public void initialize() {
         machine = new Machine();
     }
-    
+
     @Test
     public final void setsActiveJobToNull(){
         machine.setInactive();
-        assertTrue(machine.isInactive());
+        assertFalse(machine.isActive());
         assertNull(machine.getActiveJob());
     }
-    
+
     @Test
     public final void testIncNumTasks(){
         machine.setNumTasks(1);

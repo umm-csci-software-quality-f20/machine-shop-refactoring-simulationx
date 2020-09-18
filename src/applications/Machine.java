@@ -47,12 +47,12 @@ class Machine {
         return activeJob;
     }
 
-    public boolean isInactive() {
-        return (activeJob == null);
+    public boolean isActive() {
+        return activeJob != null;
     }
 
-    public boolean noJobQueued() {
-        return jobQ.isEmpty();
+    public boolean jobsQueued() {
+        return !jobQ.isEmpty();
     }
 
     public void updateActiveJob() {
