@@ -75,4 +75,11 @@ class Machine {
         setInactive();
         return getChangeTime();
     }
+
+    public int workNextTask(int timeNow) {
+        updateActiveJob();
+        setTotalWait(timeNow);
+        incNumTasks();
+        return nextTask();
+    }
 }
