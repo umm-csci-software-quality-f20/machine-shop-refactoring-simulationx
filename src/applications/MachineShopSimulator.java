@@ -67,12 +67,16 @@ public class MachineShopSimulator {
         } else {// task has just finished on machine[theMachine]
                 // schedule change-over time
             lastJob = machine[theMachine].getActiveJob();
-            machine[theMachine].setInactive();
-            finishTime = timeNow + machine[theMachine].getChangeTime();
+            finishTime= scheduleChangeOverTime(theMachine);
         }
         eList.setFinishTime(theMachine, finishTime);
 
         return lastJob;
+    }
+
+    private int scheduleChangeOverTime(int theMachine) {
+        machine[theMachine].setInactive();
+        return timeNow + machine[theMachine].getChangeTime();
     }
 
     private void setMachineChangeOverTimes(SimulationSpecification specification) {
