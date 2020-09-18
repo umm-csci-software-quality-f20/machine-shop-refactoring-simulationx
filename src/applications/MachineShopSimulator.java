@@ -47,20 +47,19 @@ public class MachineShopSimulator {
      *
      * @return last job run on this machine
      */
-    Job changeState(int theMachine) {// Task on theMachine has finished,
-                                            // schedule next one.
-        Job lastJob = null;
+    Job changeState(int theMachine) {// Task on theMachine has finished, schedule next one.
+        Job activeJob = null;
         int finishTime = largeTime;
 
-        if (machine[theMachine].isActive()) {// task has just finished on machine[theMachine]
-            lastJob = machine[theMachine].getActiveJob();
+        if (machine[theMachine].isActive()) {// Machine is working on a job
+            activeJob = machine[theMachine].getActiveJob();
             finishTime= timeNow + machine[theMachine].scheduleChangeOverTime();
         } else if (machine[theMachine].jobsQueued()) {
             finishTime = timeNow + machine[theMachine].workNextTask(timeNow);
         }
         eList.setFinishTime(theMachine, finishTime);
 
-        return lastJob;
+        return activeJob;
     }
 
     private void setMachineChangeOverTimes(SimulationSpecification specification) {
