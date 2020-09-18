@@ -49,12 +49,11 @@ public class MachineShopSimulator {
      */
     Job changeState(int theMachine) {// Task on theMachine has finished,
                                             // schedule next one.
-        Job lastJob;
+        Job lastJob = null;
         int finishTime;
 
         if (machine[theMachine].isInactive()) {// in idle or change-over
                                                     // state
-            lastJob = null;
             // wait over, ready for new job
             if (machine[theMachine].noJobQueued()) // no waiting job
                 finishTime = largeTime;
