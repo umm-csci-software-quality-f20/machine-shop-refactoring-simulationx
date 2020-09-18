@@ -69,5 +69,10 @@ class Machine {
 
 	public int nextTask() {
 		return activeJob.removeNextTask();
-	}
+    }
+
+    public int scheduleChangeOverTime() {
+        setInactive();
+        return getChangeTime();
+    }
 }

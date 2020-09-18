@@ -62,7 +62,8 @@ public class MachineShopSimulator {
             }
         } else {// task has just finished on machine[theMachine]
             lastJob = machine[theMachine].getActiveJob();
-            finishTime= timeNow + scheduleChangeOverTime(theMachine);
+            finishTime= timeNow + machine[theMachine].scheduleChangeOverTime();
+            //scheduleChangeOverTime(theMachine);
         }
         eList.setFinishTime(theMachine, finishTime);
 
@@ -76,10 +77,10 @@ public class MachineShopSimulator {
         return machine[theMachine].nextTask();
     }
 
-    private int scheduleChangeOverTime(int theMachine) {
-        machine[theMachine].setInactive();
-        return machine[theMachine].getChangeTime();
-    }
+    // private int scheduleChangeOverTime(int theMachine) {
+    //     machine[theMachine].setInactive();
+    //     return machine[theMachine].getChangeTime();
+    // }
 
     private void setMachineChangeOverTimes(SimulationSpecification specification) {
         for (int i = 1; i<=specification.getNumMachines(); ++i) {
