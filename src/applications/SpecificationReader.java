@@ -43,6 +43,7 @@ public class SpecificationReader {
             jobSpecifications[i].setNumTasks(tasks);
 
             int[] specificationsForTasks = new int[2 * tasks + 1];
+            Task[] taskArray = new Task[tasks];
 
             System.out.println("Enter the tasks (machine, time)"
                     + " in process order");
@@ -52,6 +53,7 @@ public class SpecificationReader {
                 if (theMachine < 1 || theMachine > specification.getNumMachines()
                         || theTaskTime < 1)
                     throw new MyInputException(MachineShopSimulator.BAD_MACHINE_NUMBER_OR_TASK_TIME);
+                taskArray[j-1] = new Task(theMachine, theTaskTime);
                 specificationsForTasks[2*(j-1)+1] = theMachine;
                 specificationsForTasks[2*(j-1)+2] = theTaskTime;
             }
