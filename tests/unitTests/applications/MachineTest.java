@@ -5,44 +5,64 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import dataStructures.LinkedQueue;
+
 public class MachineTest {
     Machine machine;
 
     @Before public void initialize() {
         machine = new Machine();
-    }
-    
-    @Test
-    public final void setsActiveJobToNull(){
-        machine.setInactive();
-        assertTrue(machine.isInactive());
-        assertNull(machine.getActiveJob());
-    }
-    
-    @Test
-    public final void testIncNumTasks(){
-        machine.setNumTasks(1);
-        assertTrue(machine.getNumTasks()==1);
-        machine.incNumTasks();
-        assertTrue(machine.getNumTasks()==2);
-    }
-
-    @Test
-    public final void testSetNumTasks(){
-        for (int i = 0; i < 100; i++) {
-            int r = (int) Math.random()*100;
-            machine.setNumTasks(r);
-            assertTrue(machine.getNumTasks()==r);
+        LinkedQueue jobs = machine.getJobQ();
+        for (int i = 0; i < 5; i++) {
+            Job newJob = new Job(i);
+            newJob.setArrivalTime(i+1);
+            newJob.addTask(1, 2);
+            jobs.put(newJob);
         }
     }
 
     @Test
-    public final void returnsActiveJob(){
-        Job job = new Job(12);
-        machine.getJobQ().put(job);
-        assertTrue(machine.getJobQ().size() == 1);
+    public final void setsActiveJobToNull() {
+        machine.setInactive();
+        assertFalse(machine.isActive());
+        assertNull(machine.getActiveJob());
+    }
+
+    @Test
+    public final void returnsActiveJob() {
+        int currentSize = machine.getJobQ().size();
+
         machine.updateActiveJob();
-        assertTrue(machine.getActiveJob() == job);
-        assertTrue(machine.getJobQ().size() == 0);
+        assertEquals(0, machine.getActiveJob().getId());
+        assertEquals(currentSize - 1, machine.getJobQ().size());
+
+        machine.updateActiveJob();
+        assertEquals(1, machine.getActiveJob().getId());
+        assertEquals(currentSize - 2, machine.getJobQ().size());
+    }
+
+    @Test
+    public final void scheduleChangesCorrectly() {
+        int setTime = (int) (Math.random() * 10);
+        machine.setChangeTime(setTime);
+        int time = machine.scheduleChangeOverTime();
+        assertFalse(machine.isActive());
+        assertEquals(setTime, time);
+    }
+
+    @Test
+    public final void worksNextTaskCorrectly() {
+        int timeNow =  20;
+        Job frontElement = (Job) machine.getJobQ().getFrontElement();
+        int arrivalTime = frontElement.getArrivalTime();
+
+        assertEquals(0, machine.getTotalWait());
+        assertEquals(0, machine.getNumTasks());
+
+        machine.workNextTask(timeNow);
+
+        assertEquals(frontElement, machine.getActiveJob());
+        assertEquals(timeNow - arrivalTime, machine.getTotalWait());
+        assertEquals(1, machine.getNumTasks());
     }
 }
