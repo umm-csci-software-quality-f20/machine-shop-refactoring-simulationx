@@ -24,4 +24,8 @@ public class JobSpecification {
     public int[] getSpecificationsForTasks() {
         return specificationsForTasks;
     }
+
+    public Task[] getTasks() {
+        return tasks;
+    }
 }

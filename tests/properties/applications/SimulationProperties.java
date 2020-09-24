@@ -3,6 +3,8 @@ package applications;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 import static junit.framework.TestCase.assertEquals;
@@ -10,7 +12,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
-@RunWith(JUnitQuickcheck.class)
+// @RunWith(JUnitQuickcheck.class)
+@Ignore
 public class SimulationProperties {
     @Property
     public void lastJobCompletesAtOverallFinishTime(
