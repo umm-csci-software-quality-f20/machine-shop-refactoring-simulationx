@@ -36,6 +36,10 @@ public class SimulationSpecification {
         jobSpecifications[jobNumber].setSpecificationsForTasks(specificationsForTasks);
     }
 
+    public void setSpecificationsForTasks(int jobNumber, Task[] tasks) {
+        jobSpecifications[jobNumber].setSpecificationsForTasks(tasks);
+    }
+
     public void setJobSpecification(JobSpecification[] jobSpecifications) {
         this.jobSpecifications = jobSpecifications;
     }

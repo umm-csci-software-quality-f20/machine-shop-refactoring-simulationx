@@ -58,6 +58,7 @@ public class SpecificationReader {
                 specificationsForTasks[2*(j-1)+2] = theTaskTime;
             }
             specification.setSpecificationsForTasks(i, specificationsForTasks);
+            specification.setSpecificationsForTasks(i, taskArray);
         }
     }
 
