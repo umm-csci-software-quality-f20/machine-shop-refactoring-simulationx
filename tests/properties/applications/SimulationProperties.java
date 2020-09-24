@@ -12,8 +12,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
-// @RunWith(JUnitQuickcheck.class)
-@Ignore
+@RunWith(JUnitQuickcheck.class)
+//@Ignore
 public class SimulationProperties {
     @Property
     public void lastJobCompletesAtOverallFinishTime(
@@ -81,10 +81,9 @@ public class SimulationProperties {
 
         for (int i=1; i<=numJobs; ++i) {
             JobSpecification jobSpecification = specification.getJobSpecifications(i);
-            int numTasks = jobSpecification.getNumTasks();
-            int[] specsForTasks = jobSpecification.getSpecificationsForTasks();
-            for (int j=1; j<=numTasks; ++j) {
-                int theMachine = specsForTasks[2*(j-1)+1];
+	    Task[] tasks = jobSpecification.getTasks();
+            for (int j=0; j<tasks.length; ++j) {
+                int theMachine = tasks[j].getMachine();
                 ++expectedMachineTaskCounts[theMachine];
             }
         }
