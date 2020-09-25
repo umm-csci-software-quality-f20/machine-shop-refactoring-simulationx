@@ -40,7 +40,6 @@ public class SpecificationReader {
             int tasks = keyboard.readInteger(); // number of tasks
             if (tasks < 1)
                 throw new MyInputException(MachineShopSimulator.EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
-            jobSpecifications[i].setNumTasks(tasks);
 
             Task[] taskArray = new Task[tasks];
 
