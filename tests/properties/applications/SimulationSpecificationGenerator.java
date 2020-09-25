@@ -117,11 +117,11 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         JobSpecification[] newJobSpecs = new JobSpecification[numJobs+1];
         for (int i=1; i<=numJobs; ++i) {
             JobSpecification jobSpec = spec.getJobSpecifications(i);
-            int numTasks = jobSpec.getNumTasks();
-            int[] specsForTasks = jobSpec.getSpecificationsForTasks();
+            Task[] specsForTasks = jobSpec.getTasks();
+            int numTasks = specsForTasks.length;
             int numTasksOnThisMachine = 0;
-            for (int j=1; j<=numTasks; ++j) {
-                if (specsForTasks[2*(j-1)+1] == machineToRemove) {
+            for (int j=0; j<specsForTasks.length; ++j) {
+                if (specsForTasks[j].getMachine() == machineToRemove) {
                     ++numTasksOnThisMachine;
                 }
             }
@@ -134,21 +134,20 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
             }
 
             final int newNumTasks = numTasks - numTasksOnThisMachine;
-            int[] newSpecsForTasks = new int[2* newNumTasks + 1];
-            for (int j=1, k=1; j<=numTasks; ++j) {
-                int machine = specsForTasks[2*(j-1)+1];
+            Task[] newTasks = new Task[newNumTasks];
+            for (int j=0, k=0; j<numTasks; ++j) {
+                int machine = specsForTasks[j].getMachine();
                 if (machine != machineToRemove) {
                     if (machine > machineToRemove) {
                         --machine;
                     }
-                    newSpecsForTasks[2*(k-1)+1] = machine;
-                    newSpecsForTasks[2*(k-1)+2] = specsForTasks[2*(j-1)+2];
+                    newTasks[k] = new Task(machine, specsForTasks[j].getTime());
                     ++k;
                 }
             }
             JobSpecification newJobSpec = new JobSpecification();
             newJobSpec.setNumTasks(newNumTasks);
-            newJobSpec.setSpecificationsForTasks(newSpecsForTasks);
+            newJobSpec.setSpecificationsForTasks(newTasks);
             newJobSpecs[i] = newJobSpec;
         }
         smallerSpec.setJobSpecification(newJobSpecs);

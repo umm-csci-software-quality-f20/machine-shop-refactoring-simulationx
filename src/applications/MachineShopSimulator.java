@@ -80,11 +80,8 @@ public class MachineShopSimulator {
 
             for (int j = 0; j < tasks.length; j++) {
                 Task task = tasks[j];
-                //int theMachine = specification.getJobSpecifications(i).getSpecificationsForTasks()[2*(j-1)+1];
-                //int theTaskTime = specification.getJobSpecifications(i).getSpecificationsForTasks()[2*(j-1)+2];
                 if (j == 0)
-                    firstMachine = task.getMachine(); //theMachine; // job's first machine
-                //theJob.addTask(theMachine, theTaskTime); // add to
+                    firstMachine = task.getMachine(); // job's first machine
                 theJob.addTask(task);
             } // task queue
             machine[firstMachine].getJobQ().put(theJob);
