@@ -33,7 +33,7 @@ public class SimulationSpecification {
     }
 
     public void setSpecificationsForTasks(int jobNumber, Task[] tasks) {
-        jobSpecifications[jobNumber].setSpecificationsForTasks(tasks);
+        jobSpecifications[jobNumber].setTasks(tasks);
     }
 
     public void setJobSpecification(JobSpecification[] jobSpecifications) {

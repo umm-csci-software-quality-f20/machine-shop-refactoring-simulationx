@@ -3,8 +3,8 @@ package applications;
 public class JobSpecification {
     private Task[] tasks;
 
-    public void setSpecificationsForTasks(Task[] specificationsForTasks) {
-        this.tasks = specificationsForTasks;
+    public void setTasks(Task[] tasks) {
+        this.tasks = tasks;
     }
 
     public Task[] getTasks() {

@@ -142,7 +142,7 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
                 }
             }
             JobSpecification newJobSpec = new JobSpecification();
-            newJobSpec.setSpecificationsForTasks(newTasks);
+            newJobSpec.setTasks(newTasks);
             newJobSpecs[i] = newJobSpec;
         }
         smallerSpec.setJobSpecification(newJobSpecs);
