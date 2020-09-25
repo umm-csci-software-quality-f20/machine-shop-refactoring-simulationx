@@ -32,10 +32,6 @@ public class SimulationSpecification {
         return changeOverTimes[machineNumber];
     }
 
-    public void setSpecificationsForTasks(int jobNumber, int[] specificationsForTasks) {
-        jobSpecifications[jobNumber].setSpecificationsForTasks(specificationsForTasks);
-    }
-
     public void setSpecificationsForTasks(int jobNumber, Task[] tasks) {
         jobSpecifications[jobNumber].setSpecificationsForTasks(tasks);
     }
