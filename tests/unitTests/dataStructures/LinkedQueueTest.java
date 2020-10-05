@@ -8,7 +8,7 @@ public class LinkedQueueTest {
 
     @Test
     public void testIsEmpty() {
-        LinkedQueue queue = new LinkedQueue();
+        LinkedQueue<String> queue = new LinkedQueue<String>();
         assertTrue(queue.isEmpty());
         queue.put("An item");
         assertFalse(queue.isEmpty());
@@ -18,7 +18,7 @@ public class LinkedQueueTest {
 
     @Test
     public void testQueueOperations() {
-        LinkedQueue queue = new LinkedQueue();
+        LinkedQueue<String> queue = new LinkedQueue<String>();
         assertNull(queue.getFrontElement());
         assertNull(queue.getRearElement());
         final String firstItem = "First item";

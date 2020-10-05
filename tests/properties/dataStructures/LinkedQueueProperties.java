@@ -15,7 +15,7 @@ import static org.junit.Assume.assumeThat;
 public class LinkedQueueProperties {
 
     @Property
-    public void removingDecreasesSizeByOne(@From(QueueGenerator.class) LinkedQueue queue) {
+    public void removingDecreasesSizeByOne(@From(QueueGenerator.class) LinkedQueue<Integer> queue) {
         assumeThat(queue.isEmpty(), not(true));
         final int originalSize = queue.size();
         queue.remove();
@@ -24,7 +24,7 @@ public class LinkedQueueProperties {
     }
 
     @Property
-    public void addingIncreasesSizeByOne(@From(QueueGenerator.class) LinkedQueue queue) {
+    public void addingIncreasesSizeByOne(@From(QueueGenerator.class) LinkedQueue<Integer> queue) {
         final int newValue = 5896320;
         final int originalSize = queue.size();
         queue.put(newValue);
@@ -33,7 +33,7 @@ public class LinkedQueueProperties {
     }
 
     @Property
-    public void allElementsAreInts(@From(QueueGenerator.class) LinkedQueue queue) {
+    public void allElementsAreInts(@From(QueueGenerator.class) LinkedQueue<Integer> queue) {
         while (!queue.isEmpty()) {
             Object value = queue.remove();
             assertEquals(value.getClass(), Integer.class);
@@ -41,7 +41,7 @@ public class LinkedQueueProperties {
     }
 
     @Property
-    public void canRemoveNumElementsEqualToSize(@From(QueueGenerator.class) LinkedQueue queue) {
+    public void canRemoveNumElementsEqualToSize(@From(QueueGenerator.class) LinkedQueue<Integer> queue) {
         final int size = queue.size();
         for (int i=0; i<size; ++i) {
             assertNotNull(queue.remove());

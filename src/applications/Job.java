@@ -4,7 +4,7 @@ import dataStructures.LinkedQueue;
 
 class Job {
     // data members
-    private LinkedQueue taskQ; // this job's tasks
+    private LinkedQueue<Task> taskQ; // this job's tasks
     private int length; // sum of scheduled task times
     private int arrivalTime; // arrival time at current queue
     private int id; // job identifier
@@ -12,7 +12,7 @@ class Job {
     // constructor
     Job(int theId) {
         id = theId;
-        taskQ = new LinkedQueue();
+        taskQ = new LinkedQueue<Task>();
         // length and arrivalTime have default value 0
     }
 
@@ -30,7 +30,7 @@ class Job {
         return theTime;
     }
 
-    public LinkedQueue getTaskQ() {
+    public LinkedQueue<Task> getTaskQ() {
         return taskQ;
     }
 

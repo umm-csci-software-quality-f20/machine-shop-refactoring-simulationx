@@ -4,7 +4,7 @@ import dataStructures.LinkedQueue;
 
 class Machine {
     // data members
-    private LinkedQueue jobQ; // queue of waiting jobs for this machine
+    private LinkedQueue<Job> jobQ; // queue of waiting jobs for this machine
     private int changeTime; // machine change-over time
     private int totalWait; // total delay at this machine
     private int numTasks; // number of tasks processed on this machine
@@ -12,10 +12,10 @@ class Machine {
 
     // constructor
     Machine() {
-        jobQ = new LinkedQueue();
+        jobQ = new LinkedQueue<Job>();
     }
 
-    public LinkedQueue getJobQ() {
+    public LinkedQueue<Job> getJobQ() {
         return jobQ;
     }
 

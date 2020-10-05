@@ -2,7 +2,7 @@
 
 package dataStructures;
 
-public class LinkedQueue implements Queue {
+public class LinkedQueue<Type> implements Queue {
     // data members
     protected ChainNode front;
     protected ChainNode rear;
@@ -60,7 +60,7 @@ public class LinkedQueue implements Queue {
 
     /**
      * remove an element from the front of the queue
-     * 
+     *
      * @return removed element
      * @return null if the queue is empty
      */
@@ -88,12 +88,12 @@ public class LinkedQueue implements Queue {
 
     /** test program */
     public static void main(String[] args) {
-        LinkedQueue q = new LinkedQueue(3);
+        LinkedQueue<Integer> q = new LinkedQueue<Integer>(3);
         // add a few elements
-        q.put(new Integer(1));
-        q.put(new Integer(2));
-        q.put(new Integer(3));
-        q.put(new Integer(4));
+        q.put(1);
+        q.put(2);
+        q.put(3);
+        q.put(4);
 
         // delete all elements
         while (!q.isEmpty()) {

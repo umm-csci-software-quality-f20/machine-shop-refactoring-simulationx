@@ -12,7 +12,7 @@ public class MachineTest {
 
     @Before public void initialize() {
         machine = new Machine();
-        LinkedQueue jobs = machine.getJobQ();
+        LinkedQueue<Job> jobs = machine.getJobQ();
         for (int i = 0; i < 5; i++) {
             Job newJob = new Job(i);
             newJob.setArrivalTime(i+1);
