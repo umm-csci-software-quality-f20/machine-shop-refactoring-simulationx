@@ -48,7 +48,7 @@ class Machine {
     }
 
     public void updateActiveJob() {
-        activeJob = (Job) jobQ.remove();
+        activeJob = jobQ.remove();
     }
 
 	public void setInactive() {

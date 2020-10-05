@@ -53,7 +53,7 @@ public class MachineTest {
     @Test
     public final void worksNextTaskCorrectly() {
         int timeNow =  20;
-        Job frontElement = (Job) machine.getJobQ().getFrontElement();
+        Job frontElement = machine.getJobQ().getFrontElement();
         int arrivalTime = frontElement.getArrivalTime();
 
         assertEquals(0, machine.getTotalWait());
