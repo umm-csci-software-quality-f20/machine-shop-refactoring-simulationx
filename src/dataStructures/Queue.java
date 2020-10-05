@@ -1,13 +1,13 @@
 package dataStructures;
 
-public interface Queue {
+public interface Queue<Type> {
     public boolean isEmpty();
 
-    public Object getFrontElement();
+    public Type getFrontElement();
 
-    public Object getRearElement();
+    public Type getRearElement();
 
-    public void put(Object theObject);
+    public void put(Type theObject);
 
-    public Object remove();
+    public Type remove();
 }

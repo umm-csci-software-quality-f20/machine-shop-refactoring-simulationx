@@ -4,20 +4,20 @@
 
 package dataStructures;
 
-class ChainNode {
+class ChainNode<Type> {
     // package visible data members
-    Object element;
-    ChainNode next;
+    Type element;
+    ChainNode<Type> next;
 
     // package visible constructors
     ChainNode() {
     }
 
-    ChainNode(Object element) {
+    ChainNode(Type element) {
         this.element = element;
     }
 
-    ChainNode(Object element, ChainNode next) {
+    ChainNode(Type element, ChainNode<Type> next) {
         this.element = element;
         this.next = next;
     }

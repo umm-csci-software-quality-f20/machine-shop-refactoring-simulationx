@@ -18,19 +18,18 @@ public class LinkedQueueAcceptanceTest {
         q.put(Integer.valueOf(3));
         q.put(Integer.valueOf(4));
 
-        assertEquals(4, q.getRearElement());
-        assertEquals(1, q.getFrontElement());
-        assertEquals(1, q.remove());
-        assertEquals(4, q.getRearElement());
-        assertEquals(2, q.getFrontElement());
-        assertEquals(2, q.remove());
-        assertEquals(4, q.getRearElement());
-        assertEquals(3, q.getFrontElement());
-        assertEquals(3, q.remove());
-        assertEquals(4, q.getRearElement());
-        assertEquals(4, q.getFrontElement());
-        assertEquals(4, q.remove());
-
+        assertTrue(4 == q.getRearElement());
+        assertTrue(1 == q.getFrontElement());
+        assertTrue(1 == q.remove());
+        assertTrue(4 == q.getRearElement());
+        assertTrue(2 == q.getFrontElement());
+        assertTrue(2 == q.remove());
+        assertTrue(4 == q.getRearElement());
+        assertTrue(3 == q.getFrontElement());
+        assertTrue(3 == q.remove());
+        assertTrue(4 == q.getRearElement());
+        assertTrue(4 == q.getFrontElement());
+        assertTrue(4 == q.remove());
         assertTrue(q.isEmpty());
     }
 
