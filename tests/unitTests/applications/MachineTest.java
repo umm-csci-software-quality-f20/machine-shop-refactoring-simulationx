@@ -16,7 +16,8 @@ public class MachineTest {
         for (int i = 0; i < 5; i++) {
             Job newJob = new Job(i);
             newJob.setArrivalTime(i+1);
-            newJob.addTask(1, 2);
+            Task newTask = new Task(1,2);
+            newJob.addTask(newTask);
             jobs.put(newJob);
         }
     }

@@ -16,9 +16,8 @@ class Job {
         // length and arrivalTime have default value 0
     }
 
-    // other methods
-    public void addTask(int theMachine, int theTime) {
-        getTaskQ().put(new Task(theMachine, theTime));
+    public void addTask(Task task) {
+        getTaskQ().put(task);
     }
 
     /**

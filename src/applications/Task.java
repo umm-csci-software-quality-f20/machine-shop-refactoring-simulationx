@@ -19,4 +19,12 @@ class Task {
     public int getTime() {
         return time;
     }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{ Machine Number: ").append(machine).append(" | Duration: ").append(time).append(" }");
+        return builder.toString();
+    }
 }
