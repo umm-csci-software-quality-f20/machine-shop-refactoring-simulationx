@@ -3,6 +3,8 @@ package applications;
 import com.pholser.junit.quickcheck.From;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 import static junit.framework.TestCase.assertEquals;
@@ -11,6 +13,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 @RunWith(JUnitQuickcheck.class)
+//@Ignore
 public class SimulationProperties {
     @Property
     public void lastJobCompletesAtOverallFinishTime(
@@ -78,10 +81,9 @@ public class SimulationProperties {
 
         for (int i=1; i<=numJobs; ++i) {
             JobSpecification jobSpecification = specification.getJobSpecifications(i);
-            int numTasks = jobSpecification.getNumTasks();
-            int[] specsForTasks = jobSpecification.getSpecificationsForTasks();
-            for (int j=1; j<=numTasks; ++j) {
-                int theMachine = specsForTasks[2*(j-1)+1];
+	        Task[] tasks = jobSpecification.getTasks();
+            for (int j=0; j<tasks.length; ++j) {
+                int theMachine = tasks[j].getMachine();
                 ++expectedMachineTaskCounts[theMachine];
             }
         }
