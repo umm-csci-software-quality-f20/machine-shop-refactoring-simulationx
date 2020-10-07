@@ -2,10 +2,10 @@
 
 package dataStructures;
 
-public class LinkedQueue implements Queue {
+public class LinkedQueue<Type> implements Queue<Type> {
     // data members
-    protected ChainNode front;
-    protected ChainNode rear;
+    protected ChainNode<Type> front;
+    protected ChainNode<Type> rear;
 
     // constructors
     /** create an empty queue */
@@ -27,7 +27,7 @@ public class LinkedQueue implements Queue {
      * @return the element at the front of the queue
      * @return null if the queue is empty
      */
-    public Object getFrontElement() {
+    public Type getFrontElement() {
         if (isEmpty())
             return null;
         else
@@ -38,7 +38,7 @@ public class LinkedQueue implements Queue {
      * @return the element at the rear of the queue
      * @return null if the queue is empty
      */
-    public Object getRearElement() {
+    public Type getRearElement() {
         if (isEmpty())
             return null;
         else
@@ -46,9 +46,9 @@ public class LinkedQueue implements Queue {
     }
 
     /** insert theElement at the rear of the queue */
-    public void put(Object theElement) {
+    public void put(Type theElement) {
         // create a node for theElement
-        ChainNode p = new ChainNode(theElement, null);
+        ChainNode<Type> p = new ChainNode<Type>(theElement, null);
 
         // append p to the chain
         if (front == null)
@@ -60,14 +60,14 @@ public class LinkedQueue implements Queue {
 
     /**
      * remove an element from the front of the queue
-     * 
+     *
      * @return removed element
      * @return null if the queue is empty
      */
-    public Object remove() {
+    public Type remove() {
         if (isEmpty())
             return null;
-        Object frontElement = front.element;
+        Type frontElement = front.element;
         front = front.next;
         if (isEmpty())
             rear = null; // enable garbage collection
@@ -77,7 +77,7 @@ public class LinkedQueue implements Queue {
     public int size() {
         int result = 0;
 
-        ChainNode currentNode = front;
+        ChainNode<Type> currentNode = front;
         while (currentNode != null) {
             ++result;
             currentNode = currentNode.next;
@@ -88,12 +88,12 @@ public class LinkedQueue implements Queue {
 
     /** test program */
     public static void main(String[] args) {
-        LinkedQueue q = new LinkedQueue(3);
+        LinkedQueue<Integer> q = new LinkedQueue<Integer>(3);
         // add a few elements
-        q.put(new Integer(1));
-        q.put(new Integer(2));
-        q.put(new Integer(3));
-        q.put(new Integer(4));
+        q.put(1);
+        q.put(2);
+        q.put(3);
+        q.put(4);
 
         // delete all elements
         while (!q.isEmpty()) {
@@ -105,7 +105,7 @@ public class LinkedQueue implements Queue {
 
     @Override public String toString() {
         String result = "<";
-        ChainNode node = front;
+        ChainNode<Type> node = front;
         while (node != null) {
             result += node.element.toString() + ", ";
             node = node.next;
