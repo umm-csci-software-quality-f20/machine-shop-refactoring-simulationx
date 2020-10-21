@@ -75,7 +75,7 @@ public class MachineShopSimulator {
 
     private void setMachineChangeOverTimes(SimulationSpecification specification) {
         for (int i = 0; i < specification.getNumMachines(); ++i) {
-            machine[i].setChangeTime(specification.getChangeOverTimes(i+1));
+            machine[i].setChangeTime(specification.getChangeOverTimes(i));
         }
     }
 

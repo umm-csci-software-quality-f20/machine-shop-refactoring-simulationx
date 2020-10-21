@@ -35,10 +35,10 @@ public class SpecificationReader {
 
     private void readChangeOverTimes() {
         // input the change-over times
-        int[] changeOverTimes = new int[specification.getNumMachines()+1];
+        int[] changeOverTimes = new int[specification.getNumMachines()];
 
         System.out.println("Enter change-over times for machines");
-        for (int j = 1; j <= specification.getNumMachines(); j++) {
+        for (int j = 0; j < specification.getNumMachines(); j++) {
             int ct = keyboard.readInteger();
             if (ct < 0)
                 throw new MyInputException(MachineShopSimulator.CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);

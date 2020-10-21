@@ -37,8 +37,8 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         // Ugh – the annoying problem of the indices starting at one again
         // so I have to make the array one too large and skip the first
         // slot.
-        int[] changeOverTimes = new int[numMachines + 1];
-        for (int i=1; i<=numMachines; ++i) {
+        int[] changeOverTimes = new int[numMachines];
+        for (int i=0; i<numMachines; ++i) {
             // Changeover times can be 0 so I don't need to add 1 here.
             changeOverTimes[i] = r.nextInt(MAX_CHANGEOVER_TIME);
         }
@@ -102,7 +102,7 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         int machineToRemove = r.nextInt(originalNumMachines) + 1;
 
         int[] newChangeOvers = new int[originalNumMachines];
-        for (int i=1, j=1; i<=originalNumMachines; ++i) {
+        for (int i=0, j=0; i<originalNumMachines; ++i) {
             if (i != machineToRemove) {
                 newChangeOvers[j] = spec.getChangeOverTimes(i);
                 ++j;
@@ -160,8 +160,8 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         smallerSpec.setNumMachines(numMachines);
         smallerSpec.setNumJobs(originalNumJobs-1);
 
-        int[] changeOverTimes = new int[numMachines + 1];
-        for (int i=1; i<=numMachines; ++i) {
+        int[] changeOverTimes = new int[numMachines];
+        for (int i=0; i<numMachines; ++i) {
             changeOverTimes[i] = spec.getChangeOverTimes(i);
         }
         smallerSpec.setChangeOverTimes(changeOverTimes);
