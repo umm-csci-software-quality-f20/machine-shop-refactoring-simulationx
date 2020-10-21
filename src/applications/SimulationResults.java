@@ -28,6 +28,13 @@ public class SimulationResults {
                     + totalWaitTimePerMachine[p]);
             System.out.println();
         }
+        // for (int p = 0; p < numMachines; p++) {
+        //     System.out.println("Machine " + (p+1) + " completed "
+        //             + numTasksPerMachine[p] + " tasks");
+        //     System.out.println("The total wait time was "
+        //             + totalWaitTimePerMachine[p]);
+        //     System.out.println();
+        // }
     }
 
     public int getFinishTime() {
