@@ -60,34 +60,23 @@ public class MachineShopSimulator {
         // Move this to startShop when ready
         setUpJobs(specification);
 
-        for (int p = 1; p <= numMachines; p++)
+        for (int p = 0; p < numMachines; p++) {
             changeState(p);
-
-        // for (int p = 0; p < numMachines; p++) {
-        //     changeState(p);
-        // }
+        }
     }
 
     private void createEventAndMachineQueues(SimulationSpecification specification) {
         // create event and machine queues
         eList = new EventList(specification.getNumMachines(), largeTime);
-        machine = new Machine[specification.getNumMachines() + 1];
-        for (int i = 1; i <= specification.getNumMachines(); i++)
+        machine = new Machine[specification.getNumMachines()];
+        for (int i = 0; i < specification.getNumMachines(); i++)
             machine[i] = new Machine();
-
-        // machine = new Machine[specification.getNumMachines()];
-        // for (int i = 0; i < specification.getNumMachines(); i++)
-        //     machine[i] = new Machine();
     }
 
     private void setMachineChangeOverTimes(SimulationSpecification specification) {
-        for (int i = 1; i<=specification.getNumMachines(); ++i) {
-            machine[i].setChangeTime(specification.getChangeOverTimes(i));
+        for (int i = 0; i < specification.getNumMachines(); ++i) {
+            machine[i].setChangeTime(specification.getChangeOverTimes(i+1));
         }
-
-        // for (int i = 0; i < specification.getNumMachines(); ++i) {
-        //     machine[i].setChangeTime(specification.getChangeOverTimes(i+1));
-        // }
     }
 
     private void setUpJobs(SimulationSpecification specification) {
@@ -180,28 +169,18 @@ public class MachineShopSimulator {
     }
 
     private void setNumTasksPerMachine(SimulationResults simulationResults) {
-        int[] numTasksPerMachine = new int[numMachines+1];
-        for (int i=1; i<=numMachines; ++i) {
+        int[] numTasksPerMachine = new int[numMachines];
+        for (int i=0; i<numMachines; ++i) {
             numTasksPerMachine[i] = machine[i].getNumTasks();
         }
-
-        // int[] numTasksPerMachine = new int[numMachines];
-        // for (int i=0; i<numMachines; ++i) {
-        //     numTasksPerMachine[i] = machine[i].getNumTasks();
-        // }
         simulationResults.setNumTasksPerMachine(numTasksPerMachine);
     }
 
     private void setTotalWaitTimePerMachine(SimulationResults simulationResults) {
-        int[] totalWaitTimePerMachine = new int[numMachines+1];
-        for (int i=1; i<=numMachines; ++i) {
+        int[] totalWaitTimePerMachine = new int[numMachines];
+        for (int i=0; i<numMachines; ++i) {
             totalWaitTimePerMachine[i] = machine[i].getTotalWait();
         }
-
-        // int[] totalWaitTimePerMachine = new int[numMachines];
-        // for (int i=0; i<numMachines; ++i) {
-        //     totalWaitTimePerMachine[i] = machine[i].getTotalWait();
-        // }
         simulationResults.setTotalWaitTimePerMachine(totalWaitTimePerMachine);
     }
 }

@@ -77,7 +77,7 @@ public class SimulationProperties {
 
         int numMachines = specification.getNumMachines();
         int numJobs = specification.getNumJobs();
-        int[] expectedMachineTaskCounts = new int[numMachines+1];
+        int[] expectedMachineTaskCounts = new int[numMachines];
 
         for (int i=0; i<numJobs; ++i) {
             JobSpecification jobSpecification = specification.getJobSpecifications(i);
@@ -89,7 +89,7 @@ public class SimulationProperties {
         }
 
         int[] actualMachineTasksCounts = results.getNumTasksPerMachine();
-        for (int i=1; i<=numMachines; ++i) {
+        for (int i=0; i<numMachines; ++i) {
             assertEquals(expectedMachineTaskCounts[i], actualMachineTasksCounts[i]);
         }
     }
