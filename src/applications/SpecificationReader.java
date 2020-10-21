@@ -63,6 +63,7 @@ public class SpecificationReader {
                 throw new MyInputException(MachineShopSimulator.EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
 
             Task[] taskArray = new Task[tasks];
+            Task[] taskArray0 = new Task[tasks];
 
             System.out.println("Enter the tasks (machine, time)"
                     + " in process order");
@@ -73,8 +74,10 @@ public class SpecificationReader {
                         || theTaskTime < 1)
                     throw new MyInputException(MachineShopSimulator.BAD_MACHINE_NUMBER_OR_TASK_TIME);
                 taskArray[j] = new Task(theMachine, theTaskTime);
+                taskArray0[j] = new Task(theMachine-1, theTaskTime);
             }
             specification.setSpecificationsForTasks(i, taskArray);
+            specification.setSpecificationsForTasks(i, taskArray0, false);
         }
     }
 }

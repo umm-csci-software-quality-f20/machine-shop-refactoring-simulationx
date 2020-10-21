@@ -36,6 +36,12 @@ public class SimulationSpecification {
         jobSpecifications[jobNumber].setTasks(tasks);
     }
 
+    public void setSpecificationsForTasks(int jobNumber, Task[] tasks, boolean useZeroBased) {
+        if(useZeroBased) {
+            jobSpecifications[jobNumber].setTasks(tasks);
+        }
+    }
+
     public void setJobSpecification(JobSpecification[] jobSpecifications) {
         this.jobSpecifications = jobSpecifications;
     }
