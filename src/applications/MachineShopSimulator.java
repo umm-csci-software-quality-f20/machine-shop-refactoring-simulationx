@@ -71,28 +71,8 @@ public class MachineShopSimulator {
     private void setUpJobs(SimulationSpecification specification) {
         // input the jobs
         Job theJob;
-        for (int i = 1; i <= specification.getNumJobs(); i++) {
-            Task[] tasks = specification.getJobSpecifications(i).getTasks();
-            int firstMachine = 0; // machine for first task
-
-            // create the job
-            theJob = new Job(i);
-
-            for (int j = 0; j < tasks.length; j++) {
-                Task task = tasks[j];
-                if (j == 0)
-                    firstMachine = task.getMachine(); // job's first machine
-                theJob.addTask(task);
-            } // task queue
-            machine[firstMachine].getJobQ().put(theJob);
-        }
-    }
-
-    private void setUpJobs0(SimulationSpecification specification) {
-        // input the jobs
-        Job theJob;
         for (int i = 0; i < specification.getNumJobs(); i++) {
-            Task[] tasks = specification.getJobSpecifications0(i).getTasks();
+            Task[] tasks = specification.getJobSpecifications(i).getTasks();
             int firstMachine = 0; // machine for first task
 
             // create the job
@@ -130,7 +110,6 @@ public class MachineShopSimulator {
 
         // Move this to startShop when ready
         setUpJobs(specification);
-        //setUpJobs0(specification);
 
         for (int p = 1; p <= numMachines; p++)
             changeState(p);

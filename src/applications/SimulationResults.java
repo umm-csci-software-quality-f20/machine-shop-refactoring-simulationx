@@ -16,7 +16,7 @@ public class SimulationResults {
 
     public void print() {
         for (JobCompletionData data : jobCompletions) {
-            System.out.println("Job " + data.getJobNumber() + " has completed at "
+            System.out.println("Job " + (data.getJobNumber() + 1) + " has completed at "
                     + data.getCompletionTime() + " Total wait was " + data.getTotalWaitTime());
         }
 

@@ -44,12 +44,12 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         }
         result.setChangeOverTimes(changeOverTimes);
 
-        JobSpecification[] jobSpecifications = new JobSpecification[numJobs + 1];
-        for (int i=1; i<=numJobs; ++i) {
+        JobSpecification[] jobSpecifications = new JobSpecification[numJobs];
+        for (int i=0; i<numJobs; ++i) {
             jobSpecifications[i] = new JobSpecification();
         }
         result.setJobSpecification(jobSpecifications);
-        for (int i=1; i<=numJobs; ++i) {
+        for (int i=0; i<numJobs; ++i) {
             int numTasks = r.nextInt(MAX_TASKS) + 1;
 
             Task[] specificationsForTasks = new Task[numTasks];
@@ -110,8 +110,8 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         }
         smallerSpec.setChangeOverTimes(newChangeOvers);
 
-        JobSpecification[] newJobSpecs = new JobSpecification[numJobs+1];
-        for (int i=1; i<=numJobs; ++i) {
+        JobSpecification[] newJobSpecs = new JobSpecification[numJobs];
+        for (int i=0; i<numJobs; ++i) {
             JobSpecification jobSpec = spec.getJobSpecifications(i);
             Task[] specsForTasks = jobSpec.getTasks();
             int numTasks = specsForTasks.length;
@@ -169,7 +169,7 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         int jobToRemove = r.nextInt(originalNumJobs) + 1;
 
         JobSpecification[] newJobSpecs = new JobSpecification[originalNumJobs];
-        for (int i=1, j=1; i<=originalNumJobs; ++i) {
+        for (int i=0, j=0; i<originalNumJobs; ++i) {
             if (i != jobToRemove) {
                 newJobSpecs[j] = spec.getJobSpecifications(i);
                 ++j;
@@ -184,7 +184,7 @@ public class SimulationSpecificationGenerator extends Generator<SimulationSpecif
         SimulationSpecification simulationSpecification = (SimulationSpecification) value;
         int size = simulationSpecification.getNumMachines();
         size += simulationSpecification.getNumJobs();
-        for (int i=1; i<=simulationSpecification.getNumJobs(); ++i) {
+        for (int i=0; i<simulationSpecification.getNumJobs(); ++i) {
             size += simulationSpecification.getJobSpecifications(i).getTasks().length;
         }
 
