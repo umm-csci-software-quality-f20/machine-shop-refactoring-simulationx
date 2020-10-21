@@ -62,6 +62,10 @@ public class MachineShopSimulator {
 
         for (int p = 1; p <= numMachines; p++)
             changeState(p);
+
+        // for (int p = 0; p < numMachines; p++) {
+        //     changeState(p);
+        // }
     }
 
     private void createEventAndMachineQueues(SimulationSpecification specification) {
@@ -70,12 +74,20 @@ public class MachineShopSimulator {
         machine = new Machine[specification.getNumMachines() + 1];
         for (int i = 1; i <= specification.getNumMachines(); i++)
             machine[i] = new Machine();
+
+        // machine = new Machine[specification.getNumMachines()];
+        // for (int i = 0; i < specification.getNumMachines(); i++)
+        //     machine[i] = new Machine();
     }
 
     private void setMachineChangeOverTimes(SimulationSpecification specification) {
         for (int i = 1; i<=specification.getNumMachines(); ++i) {
             machine[i].setChangeTime(specification.getChangeOverTimes(i));
         }
+
+        // for (int i = 0; i < specification.getNumMachines(); ++i) {
+        //     machine[i].setChangeTime(specification.getChangeOverTimes(i+1));
+        // }
     }
 
     private void setUpJobs(SimulationSpecification specification) {
@@ -172,6 +184,11 @@ public class MachineShopSimulator {
         for (int i=1; i<=numMachines; ++i) {
             numTasksPerMachine[i] = machine[i].getNumTasks();
         }
+
+        // int[] numTasksPerMachine = new int[numMachines];
+        // for (int i=0; i<numMachines; ++i) {
+        //     numTasksPerMachine[i] = machine[i].getNumTasks();
+        // }
         simulationResults.setNumTasksPerMachine(numTasksPerMachine);
     }
 
@@ -180,6 +197,11 @@ public class MachineShopSimulator {
         for (int i=1; i<=numMachines; ++i) {
             totalWaitTimePerMachine[i] = machine[i].getTotalWait();
         }
+
+        // int[] totalWaitTimePerMachine = new int[numMachines];
+        // for (int i=0; i<numMachines; ++i) {
+        //     totalWaitTimePerMachine[i] = machine[i].getTotalWait();
+        // }
         simulationResults.setTotalWaitTimePerMachine(totalWaitTimePerMachine);
     }
 }
