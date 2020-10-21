@@ -7,6 +7,7 @@ public class SimulationSpecification {
     private int numJobs;
     private int[] changeOverTimes;
     private JobSpecification[] jobSpecifications;
+    private JobSpecification[] jobSpecifications0;
 
     public void setNumMachines(int numMachines) {
         this.numMachines = numMachines;
@@ -36,12 +37,24 @@ public class SimulationSpecification {
         jobSpecifications[jobNumber].setTasks(tasks);
     }
 
+    public void setSpecificationsForTasks0(int jobNumber, Task[] tasks) {
+        jobSpecifications0[jobNumber].setTasks(tasks);
+    }
+
     public void setJobSpecification(JobSpecification[] jobSpecifications) {
         this.jobSpecifications = jobSpecifications;
     }
 
+    public void setJobSpecification0(JobSpecification[] jobSpecifications) {
+        this.jobSpecifications0 = jobSpecifications;
+    }
+
     public JobSpecification getJobSpecifications(int jobNumber) {
         return jobSpecifications[jobNumber];
+    }
+
+    public JobSpecification getJobSpecifications0(int jobNumber) {
+        return jobSpecifications0[jobNumber];
     }
 
     @Override

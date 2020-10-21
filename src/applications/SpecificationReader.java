@@ -51,10 +51,16 @@ public class SpecificationReader {
     private void readJobSpecifications() {
         // input the jobs
         JobSpecification[] jobSpecifications = new JobSpecification[specification.getNumJobs()+1];
+        JobSpecification[] jobSpecifications0 = new JobSpecification[specification.getNumJobs()];
         for (int i=1; i <= specification.getNumJobs(); i++) {
             jobSpecifications[i] = new JobSpecification();
         }
+        for (int i=0; i < specification.getNumJobs(); i++) {
+            jobSpecifications0[i] = new JobSpecification();
+        }
         specification.setJobSpecification(jobSpecifications);
+        specification.setJobSpecification0(jobSpecifications0);
+
         for (int i = 1; i <= specification.getNumJobs(); i++) {
             System.out.println("Enter number of tasks for job " + i);
             int tasks = keyboard.readInteger(); // number of tasks
@@ -75,5 +81,26 @@ public class SpecificationReader {
             }
             specification.setSpecificationsForTasks(i, taskArray);
         }
+
+        // for (int i = 0; i < specification.getNumJobs(); i++) {
+        //     System.out.println("Enter number of tasks for job " + i);
+        //     int tasks = keyboard.readInteger(); // number of tasks
+        //     if (tasks < 1)
+        //         throw new MyInputException(MachineShopSimulator.EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
+
+        //     Task[] taskArray = new Task[tasks];
+
+        //     System.out.println("Enter the tasks (machine, time)"
+        //             + " in process order");
+        //     for (int j = 0; j < tasks; j++) { // get tasks for job i
+        //         int theMachine = keyboard.readInteger();
+        //         int theTaskTime = keyboard.readInteger();
+        //         if (theMachine < 1 || theMachine > specification.getNumMachines()
+        //                 || theTaskTime < 1)
+        //             throw new MyInputException(MachineShopSimulator.BAD_MACHINE_NUMBER_OR_TASK_TIME);
+        //         taskArray[j] = new Task(theMachine, theTaskTime);
+        //     }
+        //     specification.setSpecificationsForTasks0(i, taskArray);
+        // }
     }
 }

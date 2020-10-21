@@ -88,6 +88,26 @@ public class MachineShopSimulator {
         }
     }
 
+    private void setUpJobs0(SimulationSpecification specification) {
+        // input the jobs
+        Job theJob;
+        for (int i = 0; i < specification.getNumJobs(); i++) {
+            Task[] tasks = specification.getJobSpecifications0(i).getTasks();
+            int firstMachine = 0; // machine for first task
+
+            // create the job
+            theJob = new Job(i);
+
+            for (int j = 0; j < tasks.length; j++) {
+                Task task = tasks[j];
+                if (j == 0)
+                    firstMachine = task.getMachine(); // job's first machine
+                theJob.addTask(task);
+            } // task queue
+            machine[firstMachine].getJobQ().put(theJob);
+        }
+    }
+
     private void createEventAndMachineQueues(SimulationSpecification specification) {
         // create event and machine queues
         eList = new EventList(specification.getNumMachines(), largeTime);
@@ -97,7 +117,8 @@ public class MachineShopSimulator {
     }
 
     /** load first jobs onto each machine
-     * @param specification*/
+     * @param specification
+     * */
     void startShop(SimulationSpecification specification) {
         // Move this to startShop when ready
         numMachines = specification.getNumMachines();
@@ -109,13 +130,15 @@ public class MachineShopSimulator {
 
         // Move this to startShop when ready
         setUpJobs(specification);
+        //setUpJobs0(specification);
 
         for (int p = 1; p <= numMachines; p++)
             changeState(p);
     }
 
     /** process all jobs to completion
-     * @param simulationResults*/
+     * @param simulationResults
+     * */
     void simulate(SimulationResults simulationResults) {
         while (numJobs > 0) {// at least one job left
             int nextToFinish = eList.nextEventMachine();
@@ -130,7 +153,8 @@ public class MachineShopSimulator {
     }
 
     /** output wait times at machines
-     * @param simulationResults*/
+     * @param simulationResults
+     * */
     void outputStatistics(SimulationResults simulationResults) {
         simulationResults.setFinishTime(timeNow);
         simulationResults.setNumMachines(numMachines);
