@@ -13,48 +13,12 @@ public class SpecificationReader {
         keyboard = new MyInputStream();
     }
 
-    private void readChangeOverTimes() {
-        // input the change-over times
-        int[] changeOverTimes = new int[specification.getNumMachines()+1];
-
-        System.out.println("Enter change-over times for machines");
-        for (int j = 1; j <= specification.getNumMachines(); j++) {
-            int ct = keyboard.readInteger();
-            if (ct < 0)
-                throw new MyInputException(MachineShopSimulator.CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
-            changeOverTimes[j] = ct;
-        }
-
-        specification.setChangeOverTimes(changeOverTimes);
-    }
-
-    private void readJobSpecifications() {
-        // input the jobs
-        JobSpecification[] jobSpecifications = new JobSpecification[specification.getNumJobs()+1];
-        for (int i=1; i <= specification.getNumJobs(); i++) {
-            jobSpecifications[i] = new JobSpecification();
-        }
-        specification.setJobSpecification(jobSpecifications);
-        for (int i = 1; i <= specification.getNumJobs(); i++) {
-            System.out.println("Enter number of tasks for job " + i);
-            int tasks = keyboard.readInteger(); // number of tasks
-            if (tasks < 1)
-                throw new MyInputException(MachineShopSimulator.EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
-
-            Task[] taskArray = new Task[tasks];
-
-            System.out.println("Enter the tasks (machine, time)"
-                    + " in process order");
-            for (int j = 0; j < tasks; j++) { // get tasks for job i
-                int theMachine = keyboard.readInteger();
-                int theTaskTime = keyboard.readInteger();
-                if (theMachine < 1 || theMachine > specification.getNumMachines()
-                        || theTaskTime < 1)
-                    throw new MyInputException(MachineShopSimulator.BAD_MACHINE_NUMBER_OR_TASK_TIME);
-                taskArray[j] = new Task(theMachine, theTaskTime);
-            }
-            specification.setSpecificationsForTasks(i, taskArray);
-        }
+    /** input machine shop data */
+    public SimulationSpecification readSpecification() {
+        readNumberMachinesAndJobs();
+        readChangeOverTimes();
+        readJobSpecifications();
+        return specification;
     }
 
     private void readNumberMachinesAndJobs() {
@@ -69,11 +33,48 @@ public class SpecificationReader {
         }
     }
 
-    /** input machine shop data */
-    public SimulationSpecification readSpecification() {
-        readNumberMachinesAndJobs();
-        readChangeOverTimes();
-        readJobSpecifications();
-        return specification;
+    private void readChangeOverTimes() {
+        // input the change-over times
+        int[] changeOverTimes = new int[specification.getNumMachines()];
+
+        System.out.println("Enter change-over times for machines");
+        for (int j = 0; j < specification.getNumMachines(); j++) {
+            int ct = keyboard.readInteger();
+            if (ct < 0)
+                throw new MyInputException(MachineShopSimulator.CHANGE_OVER_TIME_MUST_BE_AT_LEAST_0);
+            changeOverTimes[j] = ct;
+        }
+
+        specification.setChangeOverTimes(changeOverTimes);
+    }
+
+    private void readJobSpecifications() {
+        // input the jobs
+        JobSpecification[] jobSpecifications = new JobSpecification[specification.getNumJobs()];
+        for (int i=0; i < specification.getNumJobs(); i++) {
+            jobSpecifications[i] = new JobSpecification();
+        }
+        specification.setJobSpecification(jobSpecifications);
+
+        for (int i = 0; i < specification.getNumJobs(); i++) {
+            System.out.println("Enter number of tasks for job " + (i+1));
+            int tasks = keyboard.readInteger(); // number of tasks
+            if (tasks < 1)
+                throw new MyInputException(MachineShopSimulator.EACH_JOB_MUST_HAVE_AT_LEAST_1_TASK);
+
+            Task[] taskArray = new Task[tasks];
+
+            System.out.println("Enter the tasks (machine, time)"
+                    + " in process order");
+            for (int j = 0; j < tasks; j++) { // get tasks for job i
+                int theMachine = keyboard.readInteger();
+                int theTaskTime = keyboard.readInteger();
+                if (theMachine < 1 || theMachine > specification.getNumMachines()
+                        || theTaskTime < 1)
+                    throw new MyInputException(MachineShopSimulator.BAD_MACHINE_NUMBER_OR_TASK_TIME);
+                taskArray[j] = new Task(theMachine-1, theTaskTime);
+            }
+            specification.setSpecificationsForTasks(i, taskArray);
+        }
     }
 }

@@ -50,7 +50,7 @@ public class SimulationSpecification {
         builder.append("<").append(numMachines).append(" machines, ");
         builder.append(numJobs).append(" jobs; ");
         builder.append("change overs: ").append(Arrays.toString(changeOverTimes));
-        for (int i=1; i<=numJobs; ++i) {
+        for (int i=0; i<numJobs; ++i) {
             builder.append("; job ").append(i).append(" tasks: ");
             builder.append(Arrays.toString(jobSpecifications[i].getTasks()));
         }

@@ -61,7 +61,7 @@ public class SimulationProperties {
         final SimulationResults results = simulator.runSimulation(specification);
 
         JobCompletionData[] jobCompletionData = results.getJobCompletionData();
-        for (int i=1; i<jobCompletionData.length-1; ++i) {
+        for (int i=0; i<jobCompletionData.length-1; ++i) {
             assertThat(jobCompletionData[i].getCompletionTime(),
                     lessThanOrEqualTo(jobCompletionData[i+1].getCompletionTime()));
         }
@@ -77,9 +77,9 @@ public class SimulationProperties {
 
         int numMachines = specification.getNumMachines();
         int numJobs = specification.getNumJobs();
-        int[] expectedMachineTaskCounts = new int[numMachines+1];
+        int[] expectedMachineTaskCounts = new int[numMachines];
 
-        for (int i=1; i<=numJobs; ++i) {
+        for (int i=0; i<numJobs; ++i) {
             JobSpecification jobSpecification = specification.getJobSpecifications(i);
 	        Task[] tasks = jobSpecification.getTasks();
             for (int j=0; j<tasks.length; ++j) {
@@ -89,7 +89,7 @@ public class SimulationProperties {
         }
 
         int[] actualMachineTasksCounts = results.getNumTasksPerMachine();
-        for (int i=1; i<=numMachines; ++i) {
+        for (int i=0; i<numMachines; ++i) {
             assertEquals(expectedMachineTaskCounts[i], actualMachineTasksCounts[i]);
         }
     }
